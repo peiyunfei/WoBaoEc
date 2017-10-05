@@ -7,14 +7,16 @@
 import React, {Component} from 'react';
 import {
     StyleSheet,
-    Text,
     View
 } from 'react-native';
+
+import Main from './component/main/Main'
 
 export default class Setup extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <Main/>
             </View>
         );
     }
@@ -22,6 +24,6 @@ export default class Setup extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1
     },
 });

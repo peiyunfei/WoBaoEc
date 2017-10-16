@@ -18,7 +18,14 @@ export default class More extends Component {
         super(props);
         this.state = {
             isOpen: false,
+            rightText: ''
         }
+    }
+
+    componentDidMount() {
+        this.setState({
+            rightText: '1.94M'
+        })
     }
 
     render() {
@@ -33,7 +40,7 @@ export default class More extends Component {
                         {this.renderItem('省流量模式', '', true)}
                         {this.renderItem('消息提醒', '', false)}
                         {this.renderItem('邀请好友使用我宝电商', '', false)}
-                        {this.renderItem('清空缓存', '1.94M', false)}
+                        {this.renderItem('清空缓存', this.state.rightText, false)}
                     </View>
                     <View style={{marginTop: 20}}>
                         {this.renderItem('问券调查', '', false)}
@@ -68,17 +75,17 @@ export default class More extends Component {
             /> :
             <Image
                 style={styles.arrow}
-                source={{uri: 'home_arrow'}}
+                source={{uri: 'icon_cell_rightArrow'}}
             />;
         return (
             <TouchableOpacity>
-            <View style={styles.item}>
-                <Text style={{fontSize: 16, color: 'black'}}>{leftText}</Text>
-                <View style={{flexDirection: 'row'}}>
-                    <Text>{rightText}</Text>
-                    {right}
+                <View style={styles.item}>
+                    <Text style={{fontSize: 16, color: '#3D3D3D'}}>{leftText}</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style={{marginRight: 5}}>{rightText}</Text>
+                        {right}
+                    </View>
                 </View>
-            </View>
             </TouchableOpacity>
         );
     }
@@ -99,7 +106,7 @@ export default class More extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:'#e5e5e5'
+        backgroundColor: '#e5e5e5'
     },
     navigationBar: {
         flexDirection: 'row',
@@ -128,10 +135,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         backgroundColor: 'white',
         padding: 8,
-        marginBottom:5
+        marginBottom: 2
     },
     arrow: {
-        width: 22,
-        height: 22,
+        width: 8,
+        height: 13,
     },
 });

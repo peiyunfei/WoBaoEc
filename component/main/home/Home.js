@@ -5,8 +5,10 @@ import {
     View,
     TextInput,
     Image,
+    ScrollView,
     TouchableOpacity
 } from 'react-native';
+import TopView from './TopView'
 
 /**
  * 主页
@@ -17,6 +19,9 @@ export default class Home extends Component {
         return (
             <View style={styles.container}>
                 {this.renderNavigationBar()}
+                <ScrollView>
+                    <TopView/>
+                </ScrollView>
             </View>
         );
     }

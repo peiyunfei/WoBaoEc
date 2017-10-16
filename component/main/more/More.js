@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         backgroundColor: 'white',
-        padding: 8,
+        padding: 10,
         marginBottom: 2
     },
     arrow: {

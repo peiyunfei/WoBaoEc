@@ -19,10 +19,9 @@ export default class GuessLike extends Component {
         this.state = {
             url: 'http://bj.meituan.com/ptapi/getScenesList/?theme=cheap&tab=all&ci=1&limit=20',
             dataSource: new ListView.DataSource({
-                rowHasChanged: (r1, r2) => {
-                    r1 !== r2;
+                    rowHasChanged: (r1, r2) => r1 !== r2
                 }
-            })
+            )
         }
     }
 
@@ -55,9 +54,7 @@ export default class GuessLike extends Component {
                 {this.renderTitle()}
                 <ListView
                     dataSource={this.state.dataSource}
-                    renderRow={(rowData) => {
-                        this.renderRow(rowData)
-                    }}
+                    renderRow={(rowData) => this.renderRow(rowData)}
                 />
             </View>
         );
@@ -72,10 +69,10 @@ export default class GuessLike extends Component {
                     source={{uri: rowData.imgUrl}}
                 />
                 <View style={{flex: 2}}>
-                    <Text>{rowData.title}</Text>
+                    <Text style={styles.title}>{rowData.title}</Text>
                     <Text>{rowData.subTitle}</Text>
                     <View style={styles.bottomInfo}>
-                        <Text>{rowData.oldPrice}</Text>
+                        <Text style={styles.oldPrice}>{rowData.oldPrice}</Text>
                         <Text>{rowData.bottomInfo}</Text>
                     </View>
                 </View>
@@ -121,5 +118,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginTop: 5,
+    },
+    title: {
+        color: '#525052',
+        fontSize: 16,
+        marginBottom: 5,
+    },
+    oldPrice: {
+        color: '#19B3A2',
+        fontSize: 16,
     },
 });

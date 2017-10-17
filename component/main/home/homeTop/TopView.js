@@ -6,10 +6,10 @@ import {
     ScrollView,
 } from 'react-native';
 import TopListView from './TopListView'
+import topMenu from '../../../../json/TopMenu.json'
 
 let Dimension = require('Dimensions');
 let width = Dimension.get('window').width;
-let TopMenu = require('../../../json/TopMenu.json');
 /**
  * 头部的轮播图
  */
@@ -55,10 +55,10 @@ export default class TopView extends Component {
 
     renderScrollViewItem() {
         let itemArr = [];
-        let dataArr = TopMenu.data;
+        let dataArr = topMenu.data;
         for (let i = 0; i < dataArr.length; i++) {
             let view = <TopListView
-                key = {i}
+                key={i}
                 dataArr={dataArr[i]}/>
             itemArr.push(view);
         }

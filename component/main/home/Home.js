@@ -8,7 +8,8 @@ import {
     ScrollView,
     TouchableOpacity
 } from 'react-native';
-import TopView from './TopView'
+import TopView from './homeTop/TopView'
+import MiddleView from './homeMiddle/MiddleView'
 
 /**
  * 主页
@@ -20,7 +21,10 @@ export default class Home extends Component {
             <View style={styles.container}>
                 {this.renderNavigationBar()}
                 <ScrollView>
+                    {/*头部布局*/}
                     <TopView/>
+                    {/*中间布局*/}
+                    <MiddleView/>
                 </ScrollView>
             </View>
         );
@@ -52,6 +56,7 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#e8e8e8'
     },
     navigationBar: {
         flexDirection: 'row',

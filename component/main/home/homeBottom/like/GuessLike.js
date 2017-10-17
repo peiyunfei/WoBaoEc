@@ -63,7 +63,7 @@ export default class GuessLike extends Component {
 
     renderRow(rowData) {
         return (
-            <View style={styles.guessLike}>
+            <TouchableOpacity style={styles.guessLike}>
                 <Image
                     style={styles.img}
                     source={{uri: rowData.imgUrl}}
@@ -76,7 +76,7 @@ export default class GuessLike extends Component {
                         <Text>{rowData.bottomInfo}</Text>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 

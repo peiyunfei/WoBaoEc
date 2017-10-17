@@ -3,7 +3,6 @@ import {
     StyleSheet,
     Image,
 } from 'react-native';
-import {Navigator} from 'react-native-deprecated-custom-components'
 import TabNavigator from 'react-native-tab-navigator';
 import HomeView from './home/Home'
 import MineView from './mine/Mine'
@@ -19,6 +18,7 @@ export default class Main extends Component {
         super(props);
         this.state = {
             selectedTab: 'home',
+            theme: this.props.theme,
         }
     }
 
@@ -27,24 +27,24 @@ export default class Main extends Component {
             <TabNavigator>
                 {/*首页*/}
                 {this.renderTabBarItem('首页', 'icon_tabbar_homepage',
-                    'icon_tabbar_homepage_selected', 'home', '首页', HomeView)}
+                    'icon_tabbar_homepage_selected', 'home', HomeView)}
 
                 {/*商家*/}
                 {this.renderTabBarItem('商家', 'icon_tabbar_merchant_normal',
-                    'icon_tabbar_merchant_selected', 'shop', '商家', ShopView)}
+                    'icon_tabbar_merchant_selected', 'shop', ShopView)}
 
                 {/*我的*/}
                 {this.renderTabBarItem('我的', 'icon_tabbar_mine',
-                    'icon_tabbar_mine_selected', 'mine', '我的', MineView)}
+                    'icon_tabbar_mine_selected', 'mine', MineView)}
 
                 {/*更多*/}
                 {this.renderTabBarItem('更多', 'icon_tabbar_misc',
-                    'icon_tabbar_misc_selected', 'more', '更多', MoreView)}
+                    'icon_tabbar_misc_selected', 'more', MoreView)}
             </TabNavigator>
         );
     }
 
-    renderTabBarItem(title, iconName, selectedIconName, selectedTab, componentName, component) {
+    renderTabBarItem(title, iconName, selectedIconName, selectedTab, Component) {
         return (
             <TabNavigator.Item
                 title={title}
@@ -59,16 +59,7 @@ export default class Main extends Component {
                         source={{uri: selectedIconName}}/>}
                 selected={this.state.selectedTab === selectedTab}
                 onPress={() => this.setState({selectedTab: selectedTab})}>
-                <Navigator
-                    initialRoute={{name: componentName, component: component}}
-                    configureScene={() => {// 过渡动画
-                        return Navigator.SceneConfigs.PushFromRight;
-                    }}
-                    renderScene={(route, navigator) => {
-                        let Component = route.component;
-                        return <Component navigator={navigator} {...route.params}/>;
-                    }}
-                />
+                <Component {...this.props} theme={this.state.theme}/>
             </TabNavigator.Item>
         );
     }
@@ -77,8 +68,6 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     iconStyle: {
         width: 30,

@@ -6,10 +6,12 @@ import {
     TextInput,
     Image,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
 } from 'react-native';
 import TopView from './homeTop/TopView'
 import MiddleView from './homeMiddle/MiddleView'
+import ShoppingCenter from './homeBottom/shopping/ShoppingCenter'
+import ShoppingCenterDetail from './homeBottom/shopping/ShoppingCenterDetail'
 
 /**
  * 主页
@@ -25,9 +27,29 @@ export default class Home extends Component {
                     <TopView/>
                     {/*中间布局*/}
                     <MiddleView/>
+                    {/*购物中心*/}
+                    <ShoppingCenter
+                        onShoppingCenterSelect={(detailUrl, name) => {
+                            this.onShoppingCenterSelect(detailUrl, name)
+                        }}
+                    />
+
                 </ScrollView>
             </View>
         );
+    }
+
+    onShoppingCenterSelect(detailUrl, name) {
+        let index = detailUrl.indexOf('=');
+        let url = detailUrl.substr(index + 1, detailUrl.length);
+        this.props.navigator.push({
+            component: ShoppingCenterDetail,
+            params: {
+                url: url,
+                name, name,
+                ...this.props
+            }
+        })
     }
 
     renderNavigationBar() {

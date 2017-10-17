@@ -12,7 +12,7 @@ import TopView from './homeTop/TopView'
 import MiddleView from './homeMiddle/MiddleView'
 import ShoppingCenter from './homeBottom/shopping/ShoppingCenter'
 import ShoppingCenterDetail from './homeBottom/shopping/ShoppingCenterDetail'
-
+import GuessLike from './homeBottom/like/GuessLike'
 /**
  * 主页
  */
@@ -33,6 +33,8 @@ export default class Home extends Component {
                             this.onShoppingCenterSelect(detailUrl, name)
                         }}
                     />
+                    {/*猜你喜欢*/}
+                    <GuessLike/>
 
                 </ScrollView>
             </View>
